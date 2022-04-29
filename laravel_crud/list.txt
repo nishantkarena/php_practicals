@@ -1,0 +1,67 @@
+# Cookie
+public function setcookie(Request $request)
+    {
+	$minutes = 5;
+      	$response = new Response();
+      	$response->withCookie(cookie('aprilmonth', '1thApril2022', $minutes));
+      	return $response;
+    }
+
+    public function getcookie(Request $request)
+    {
+	 $value = $request->cookie('aprilmonth');
+     	 echo $value;
+     	 $cookie = \Cookie::forget('aprilmonth');
+
+         return redirect('/')->withCookie($cookie);
+
+    }
+
+# Templates
+# Pagination 
+# helper 
+app/Helpers/helpers.php
+"autoload": {
+
+    "psr-4": {
+
+        "App\\": "app/",
+
+        "Database\\Factories\\": "database/factories/",
+
+        "Database\\Seeders\\": "database/seeders/"
+
+    },
+
+    "files": [
+
+        "app/Helpers/helpers.php"
+
+    ]
+
+},
+composer dump-autoload
+<p>Date: {{ convertYmdToMdy('2022-02-12') }}</p>
+<p>Date: {{ convertMdyToYmd('02-12-2022') }}</p>
+
+-----------------------------------------
+
+# With each operation and more fields and validation 
+- Name
+- Email
+- Password 
+- Confirm password 
+- PhoneNumber
+- Date
+- status
+- Dropdown 
+
+php artisan route:clear &&  
+php artisan view:clear && 
+php artisan config:clear &&
+php artisan cache:clear && 
+php artisan clear-compiled
+
+
+
+

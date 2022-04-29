@@ -1,8 +1,6 @@
 <?php
 include 'connection.php';
 // include "phpvalidation.php";
-
-
 if(isset($_POST['cnaclick']) && count($_POST)>0)
 {
 
@@ -51,8 +49,8 @@ if(isset($_POST['cnaclick']) && count($_POST)>0)
           
         if(mysqli_query($conn, $sql)){
             echo "<h3>data stored in a database successfully.</h3>"; 
-			print_r($sql);
-			//header("Location:login.php");
+			// print_r($sql);
+			header("Location:login.php");
         } else{
             echo "ERROR: Sorry $sql. ". mysqli_error($conn);
         }
@@ -81,92 +79,92 @@ if(isset($_POST['cnaclick']) && count($_POST)>0)
     </head>
     <body>
 		<form action="" method="POST" enctype="multipart/form-data">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-offset-4 col-lg-4 col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 col-xs-12" id="cnform">
-                    <h3 class="text-center"><i class="fa fa-user-plus"></i>Create New Account</h3><hr>  
-                    <div class="form-group">
-						<b>Firstname</b>
-						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-user"></i></span>
-							<input id="txtfirstname" name="txtfirstname" type="text" placeholder="Enter firstname here" maxlength="20" class="form-control" />
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-offset-4 col-lg-4 col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 col-xs-12" id="cnform">
+						<h3 class="text-center"><i class="fa fa-user-plus"></i>Create New Account</h3><hr>  
+						<div class="form-group">
+							<b>Firstname</b>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user"></i></span>
+								<input id="txtfirstname" name="txtfirstname" type="text" placeholder="Enter firstname here" maxlength="20" class="form-control" />
+							</div>
+							<small id="txtfirstnameval" class="text-danger"></small>
 						</div>
-						<small id="txtfirstnameval" class="text-danger"></small>
-					</div>
-					<div class="form-group">
-						<b>Lastname</b>
-						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-user"></i></span>
-							<input id="txtlastname" name="txtlastname" type="text" placeholder="Enter lastname here" maxlength="20" class="form-control" />
+						<div class="form-group">
+							<b>Lastname</b>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user"></i></span>
+								<input id="txtlastname" name="txtlastname" type="text" placeholder="Enter lastname here" maxlength="20" class="form-control" />
+							</div>
+							<small id="txtlastnameval" class="text-danger"></small>
 						</div>
-						<small id="txtlastnameval" class="text-danger"></small>
-					</div>
-                    <div class="form-group">
-						<b>Email</b>
-						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-							<input id="txtemail" name="txtemail" type="text" placeholder="Enter email id here" maxlength="50" class="form-control" />
+						<div class="form-group">
+							<b>Email</b>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+								<input id="txtemail" name="txtemail" type="text" placeholder="Enter email id here" maxlength="50" class="form-control" />
+							</div>
+							<small id="txtemailval" class="text-danger"></small>
 						</div>
-						<small id="txtemailval" class="text-danger"></small>
-					</div>
-                    <div class="form-group">
-						<b>Password</b>
-						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-key"></i></span>
-							<input id="txtpassword" name="txtpassword" type="password" placeholder="Enter password here" maxlength="12" class="form-control" />
+						<div class="form-group">
+							<b>Password</b>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-key"></i></span>
+								<input id="txtpassword" name="txtpassword" type="password" placeholder="Enter password here" maxlength="12" class="form-control" />
+							</div>
+							<small id="txtpasswordval" class="text-danger"></small>
 						</div>
-						<small id="txtpasswordval" class="text-danger"></small>
-					</div>
-                    <div class="form-group">
-						<b>Confirm Password</b>
-						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-key"></i></span>
-							<input id="txtconfpassword" name="txtconfpassword" type="password" placeholder="Enter password here" maxlength="12" class="form-control" />
+						<div class="form-group">
+							<b>Confirm Password</b>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-key"></i></span>
+								<input id="txtconfpassword" name="txtconfpassword" type="password" placeholder="Enter password here" maxlength="12" class="form-control" />
+							</div>
+							<small id="txtconfpasswordval" class="text-danger"></small>
 						</div>
-						<small id="txtconfpasswordval" class="text-danger"></small>
-					</div>
-                    <div class="form-group">
-						<b>Gender</b>
-						<div class="input-group">
-                            <input type="radio" class="form-control" name="txtgender" id="male" value="1" >
-							<span class="input-group-addon"><i class="fa fa-male">Male</i></span>
-                            <input type="radio" class="form-control" name="txtgender" id="female" value="0">
-                            <span class="input-group-addon"> <i class="fa fa-female">Female</i></span>
+						<div class="form-group">
+							<b>Gender</b>
+							<div class="input-group">
+								<input type="radio" class="form-control" name="txtgender" id="male" value="1" >
+								<span class="input-group-addon"><i class="fa fa-male">Male</i></span>
+								<input type="radio" class="form-control" name="txtgender" id="female" value="0">
+								<span class="input-group-addon"> <i class="fa fa-female">Female</i></span>
+							</div>
+							<small id="genderval" class="text-danger"></small>
 						</div>
-						<small id="genderval" class="text-danger"></small>
-					</div>
-                    <div class="form-group">
-						<b>Address</b>
-						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-child"></i></span>
-                            <textarea name="txtarea" id="txtarea" cols="5" placeholder="Enter Your Address" rows="5" class="form-control"></textarea>
+						<div class="form-group">
+							<b>Address</b>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-child"></i></span>
+								<textarea name="txtarea" id="txtarea" cols="5" placeholder="Enter Your Address" rows="5" class="form-control"></textarea>
+							</div>
+							<small id="txtareaval" class="text-danger"></small>
 						</div>
-						<small id="txtareaval" class="text-danger"></small>
-					</div>
-                    <div class="form-group">
-						<b>Designation</b>
-						<div class="input-group">
-							<span class="input-group-addon"></span>
-                            <select name="txtselect" id="txtselect" class="form-control">
-                                <option value="">Select</option>
-                                <option value="pr">Project Manager</option>
-                                <option value="jr">Jr.Developer</option>
-                                <option value="sr">Sr.Developer</option>
-                                <option value="hr">Human Resource</option>
-                            </select>
+						<div class="form-group">
+							<b>Designation</b>
+							<div class="input-group">
+								<span class="input-group-addon"></span>
+								<select name="txtselect" id="txtselect" class="form-control">
+									<option value="">Select</option>
+									<option value="pr">Project Manager</option>
+									<option value="jr">Jr.Developer</option>
+									<option value="sr">Sr.Developer</option>
+									<option value="hr">Human Resource</option>
+								</select>
+							</div>
+							<small id="txtselectval" class="text-danger"></small>
 						</div>
-						<small id="txtselectval" class="text-danger"></small>
+						<div class="form-group">
+							<b>Select File</b>
+							<input type="file" id="fileToUpload" name="fileToUpload" class="form-control">
+						</div>
+						<div class="form-group">
+							<input type="submit" id="cnaclick" name="cnaclick" class="btn btn-primary" class="form-control">
+						</div>
 					</div>
-					<div class="form-group">
-						<b>Select File</b>
-						<input type="file" id="fileToUpload" name="fileToUpload" class="form-control">
-					</div>
-                    <div class="form-group">
-                        <input type="submit" id="cnaclick" name="cnaclick" class="btn btn-primary" class="form-control">
-                    </div>
-                </div>
-            </div>
-        </div>
+				</div>
+			</div>
 		</form>
     </body>
 </html>

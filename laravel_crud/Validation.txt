@@ -1,0 +1,56 @@
+
+$validatedData = $request->validate([
+       'f_name' => 'required|min:8',
+       'l_name' => 'required',
+       'code' => 'required|numeric'
+   ],
+   [
+    'f_name.required'=> 'Your First Name is Required', // custom message
+    'f_name.min'=> 'First Name Should be Minimum of 8 Character', // custom message
+    'l_name.required'=> 'Your Last Name is Required' // custom message
+	'email.exists' => 'No user was found with this e-mail address'
+   ]
+);
+
+'name' => 'required',
+'email' => 'required|email',
+'message' => 'required|max:250',
+
+$request->validate([
+    'title' => 'required|unique:posts|max:255',
+    'body' => 'required',
+    'publish_at' => 'nullable|date',
+]);
+
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
+<label for="title">Post Title</label>
+ 
+<input id="title"
+    type="text"
+    name="title"
+    class="@error('title') is-invalid @enderror">
+ 
+@error('title')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror
+
+
+protected $rules_update = [
+    'email_address' => 'required|email|unique:users,email_address,'.$id,
+    'first_name' => "required",
+    'last_name' => "required",
+    'password' => "required|min:6|same:password_confirm",
+    'password_confirm' => "required:min:6|same:password",
+    'password_current' => "required:min:6"
+];

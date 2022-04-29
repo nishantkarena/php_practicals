@@ -2,14 +2,44 @@
 include 'connection.php';
 $uid= $_GET['id'];
 if(isset($_REQUEST['edit'])){
-$fname=$_POST['txtfirstname'];
-$lname=$_POST['txtlastname'];
-$email=$_POST['txtemail'];
-$gender=$_POST['txtgender'];
-$address=$_POST['txtarea'];
-$designation=$_POST['txtselect'];
+    $fname=$_POST['txtfirstname'];
+    $lname=$_POST['txtlastname'];
+    $email=$_POST['txtemail'];
+    $gender=$_POST['txtgender'];
+    $address=$_POST['txtarea'];
+    $designation=$_POST['txtselect'];
+    $files=$_FILES["fileToUpload"]["name"];
 
-    $edit = "UPDATE `student` SET `fname`='$fname',`lname`='$lname',`email`='$email',`address`='$address',`designation`='$designation',`gender`='$gender' WHERE `id`='$uid'"; 
+    $target_dir = "uploads/";
+	$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+	$uploadOk = 1;
+	$filetype = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+	// Check file size
+	if ($_FILES["fileToUpload"]["size"] > 500000) {
+		echo "Sorry, your file is too large.";
+		$uploadOk = 0;
+  	}
+	
+	// Allow certain file formats
+	if($filetype != "doc" && $filetype != "pdf" && $filetype != "xlsx") {
+  		echo "Sorry, only PDF,DOC and XLS files are allowed.";
+  		$uploadOk = 0;
+	}
+
+	// Check if $uploadOk is set to 0 by an error
+	if ($uploadOk == 0) {
+		echo "Sorry, your file was not uploaded.";
+  		// if everything is ok, try to upload file
+  	} else {
+		if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+	  		echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
+		} else {
+	 	 	echo "Sorry, there was an error uploading your file.";
+		}
+  	}
+
+    $edit = "UPDATE `student` SET `fname`='$fname',`lname`='$lname',`email`='$email',`address`='$address',`designation`='$designation',`gender`='$gender',`file`='$files' WHERE `id`='$uid'"; 
 
     $result1 = $conn->query($edit); 
 
@@ -43,7 +73,7 @@ $designation=$_POST['txtselect'];
         </style>
     </head>
     <body>
-		<form action="" method="POST">
+		<form action="" method="POST" enctype="multipart/form-data">
         <div class="container">
             <div class="row">
                 <div class="col-lg-offset-4 col-lg-4 col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 col-xs-12" id="cnform">
@@ -128,6 +158,10 @@ $designation=$_POST['txtselect'];
                             }
                     
                     ?>
+                    <div class="form-group">
+						<b>Select File</b>
+						<input type="file" id="fileToUpload" name="fileToUpload" class="form-control">
+					</div>
                     <div class="form-group">
                         <input type="submit" id="cnaclick" name="edit" class="btn btn-primary" class="form-control" value="Edit">
                     </div>
