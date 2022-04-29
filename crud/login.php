@@ -1,41 +1,41 @@
 <?php
 
 include 'connection.php';
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
+
 
 if(isset($_REQUEST)&& count($_REQUEST)>0){
 
-$useremail = $_POST['txtemail'];  
-$userpassword = $_POST['txtpassword'];  
+    $useremail = $_POST['txtemail'];  
+    $userpassword = $_POST['txtpassword'];  
 
-$sql = "select * from student where email = '$useremail' and password = '$userpassword'";
-$result = mysqli_query($conn, $sql);
+    $sql = "select * from student where email = '$useremail' and password = '$userpassword'";
+    $result = mysqli_query($conn, $sql);
 
-if (mysqli_num_rows($result) > 0) {
-  // output data of each row
-  while($row = mysqli_fetch_assoc($result)) {
-    header("Location:list.php");
-  }
-} else {
-  echo "Error";
-}
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $_SESSION['email']=$useremail;
+            // session_unset();
+            // print_r($_SESSION);
+            header("Location:list.php");
+        }
+    }
+    else {
+        echo "Email or Password Invalid.";
+    }
 }
 ?>
 <html>
     <head>
-        <title>Registration Form</title>
+        <title>Login</title>
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link href="css/bootstrap/bootstrap.css" type="text/css" rel="stylesheet" />
 		<link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="Stylesheet" type="text/css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>		
-		<script type="text/javascript">
-			
-			 
-			 var $PasswordRegEx = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,12}$/;
-			 var $EmailIdRegEx = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,8}\b$/i;
-
-			
-			
-        </script>
+		<script type="text/javascript" src="js/login.js"></script>
         <style type="text/css">
             #cnform{box-shadow:0px 0px 3px gray;margin-top:30px;margin-bottom:30px;}
 			i.fa,b{color:teal;}

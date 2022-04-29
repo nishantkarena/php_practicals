@@ -5,7 +5,7 @@
 			var $AgeRegEx = /^([0-9]{1,2})$/;
 
 			$(document).ready(function(){
-				var fnameflag=false,lnameflag=false,emailflag=false,passwordflag=false;
+				var fnameflag=false,lnameflag=false,emailflag=false,passwordflag=false,confpasswordflag=false,addressflag=false,selectflag=false;
 				$("#txtfirstname").blur(function(){
 					$("#txtfirstnameval").empty();
 					if($(this).val()=="" || $(this).val()==null)
@@ -65,16 +65,16 @@
 					if($(this).val()=="" || $(this).val()==null)
 					{
 						$("#txtpasswordval").html("(*) Password required..!!");
-						emailflag=false;
+						passwordflag=false;
 					}
 					else{
 						if(!$(this).val().match($PasswordRegEx))
 						{
 							$("#txtpasswordval").html("(*) Invalid Password..!!");
-							emailflag=false;
+							passwordflag=false;
 						}
 						else{
-							emailflag=true;
+							passwordflag=true;
 						}
 					}
 				});
@@ -83,16 +83,16 @@
 					if($(this).val()=="" || $(this).val()==null)
 					{
 						$("#txtconfpasswordval").html("(*) Confirm Password required..!!");
-						emailflag=false;
+						confpasswordflag=false;
 					}
 					else{
 						if($(this).val()!=$("#txtpassword").val())
 						{
 							$("#txtconfpasswordval").html("(*) Password Does Not Match..!!");
-							emailflag=false;
+							confpasswordflag=false;
 						}
 						else{
-							emailflag=true;
+							confpasswordflag=true;
 						}
 					}
 				});
@@ -101,10 +101,10 @@
 					if($(this).val()=="" || $(this).val()==null)
 					{
 						$("#txtareaval").html("(*) Address required..!!");
-						emailflag=false;
+						addressflag=false;
 					}
 					else{
-						emailflag=true;
+						addressflag=true;
 					}
 				});
 				$("#txtselect").blur(function(){
@@ -112,10 +112,10 @@
 					if($(this).val()=="" || $(this).val()==null)
 					{
 						$("#txtselectval").html("(*) Select Designation..!!");
-						emailflag=false;
+						selectflag=false;
 					}
 					else{
-						emailflag=true;
+						selectflag=true;
 					}
 				});
 				$('#cnaclick').click(function(){
@@ -171,26 +171,26 @@
 					if($(this).val()=="" || $(this).val()==null)
 					{
 						$("#txtpasswordval").html("(*) Password required..!!");
-						emailflag=false;
+						passwordflag=false;
 					}
 					else{
 						if(!$(this).val().match($PasswordRegEx))
 						{
 							$("#txtpasswordval").html("(*) Invalid Password..!!");
-							emailflag=false;
+							passwordflag=false;
 						}
 						else{
-							emailflag=true;
+							passwordflag=true;
 						}
 					}
 					$("#txtareaval").empty();
 					if($(this).val()=="" || $(this).val()==null)
 					{
 						$("#txtareaval").html("(*) Address required..!!");
-						emailflag=false;
+						addressflag=false;
 					}
 					else{
-						emailflag=true;
+						addressflag=true;
 					}
 				});
 				$('#txtfirstname').keypress(function(e){

@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "phpkcs";
+$dbname = "exam";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -14,4 +14,5 @@ if($conn === false){
 else{
 //    echo "connection successfully"; 
 }
+
 ?>
