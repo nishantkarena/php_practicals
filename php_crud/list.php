@@ -1,8 +1,5 @@
 <?php
-if(!isset($_SESSION)) 
-{ 
-    session_start(); 
-} 
+session_start(); 
 if(!$_SESSION['email']){
     header("Location:login.php");
 }
@@ -36,14 +33,14 @@ if(!$_SESSION['email']){
                         else{
                             document.getElementById("txtmsg").innerHTML = this.responseText;
                         }
+                    }
                 }
-            }
-        };
-        xmlhttp.open("GET", "delete.php?id=" + str, true);
-        xmlhttp.send();
+            };
+            xmlhttp.open("GET", "delete.php?id=" + str, true);
+            xmlhttp.send();
+        }
     }
-}
-</script>
+    </script>
 </head>
 <body>
     <span id="txtmsg"></span>
@@ -68,7 +65,7 @@ if(!$_SESSION['email']){
 
         if (mysqli_num_rows($result) > 0) {
         // output data of each row
-         while($row = mysqli_fetch_assoc($result)) {
+            while($row = mysqli_fetch_assoc($result)) {
             ?>
             <tr>
             <td><?= $row['id']?></td>
@@ -94,15 +91,16 @@ if(!$_SESSION['email']){
                         echo "Male";
                       }else{
                         echo "Female";
-                      }?>
+                      }
+                ?>
             </td>
             <td><?= $row['file']?></td>
             <td><a href='edit.php?id=<?=$row['id']?>' class="btn btn-primary">Edit</a></td>
-            <td class=""><button class="btn btn-danger" onclick="deleterow(<?=$row['id']?>);">Delete</button></td>
+            <td><button class="btn btn-danger" onclick="deleterow(<?=$row['id']?>);">Delete</button></td>
         </tr>
-       <?php }
-} 
-?>
+       <?php    }
+            } 
+        ?>
         
     </table>
 </body>

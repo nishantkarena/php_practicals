@@ -1,11 +1,6 @@
 <?php
-
-include 'connection.php';
-if(!isset($_SESSION)) 
-{ 
-    session_start(); 
-} 
-
+session_start(); 
+include 'connection.php'; 
 
 if(isset($_REQUEST)&& count($_REQUEST)>0){
 
