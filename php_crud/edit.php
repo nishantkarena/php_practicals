@@ -16,7 +16,7 @@ require 'process/editprocess.php';
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
         integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
-    <script src="/js/jsvalidation.js"></script>
+    <script src="js/jsvalidation.js"></script>
     <link rel="stylesheet" href="css/indexpage.css">
 </head>
 
@@ -77,16 +77,16 @@ require 'process/editprocess.php';
                         <b>Address</b>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-child"></i></span>
-                            <textarea name="txtarea" id="txtarea" cols="5" placeholder="Enter Your Address" rows="5"
+                            <textarea name="address" id="address" cols="5" placeholder="Enter Your Address" rows="5"
                                 class="form-control" required><?=$row['address']?></textarea>
                         </div>
-                        <small id="txtareaval" class="text-danger"></small>
+                        <small id="addressval" class="text-danger"></small>
                     </div>
                     <div class="form-group">
                         <b>Designation</b>
                         <div class="input-group">
                             <span class="input-group-addon"></span>
-                            <select name="txtselect" id="txtselect" class="form-control">
+                            <select name="designation" id="designation" class="form-control">
                                 <option value="">Select</option>
                                 <option value="pr" <?php if($row['designation']=="pr"){ echo "selected";}?>>Project
                                     Manager</option>
@@ -98,7 +98,7 @@ require 'process/editprocess.php';
                                     Resource</option>
                             </select>
                         </div>
-                        <small id="txtselectval" class="text-danger"></small>
+                        <small id="designationval" class="text-danger"></small>
                     </div>
                     <div class="form-group">
                         <b>Select File</b>

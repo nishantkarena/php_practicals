@@ -5,7 +5,7 @@ var $ConNoRegEx = /^([0-9]{10})$/;
 var $AgeRegEx = /^([0-9]{1,2})$/;
 
 $(document).ready(function () {
-	var fnameflag = false, lnameflag = false, emailflag = false, passwordflag = false, confpasswordflag = false, addressflag = false, selectflag = false, fileflag= false;
+	var fnameflag = false, lnameflag = false, emailflag = false, passwordflag = false, confpasswordflag = false, addressflag = false, designationflag = false, fileflag= false;
 	$("#txtfirstname").blur(function () {
 		$("#txtfirstnameval").empty();
 		if ($(this).val() == "" || $(this).val() == null) {
@@ -100,16 +100,16 @@ $(document).ready(function () {
 		$("#designationval").empty();
 		if ($(this).val() == "" || $(this).val() == null) {
 			$("#designationval").html("(*) Select Designation..!!");
-			selectflag = false;
+			designationflag = false;
 		}
 		else {
-			selectflag = true;
+			designationflag = true;
 		}
 	});
 	$("#fileToUpload").blur(function () {
 		$("#fileToUploadval").empty();
 		if ($(this).val() == "" || $(this).val() == null) {
-			$("#fileToUploadval").html("(*) Select Designation..!!");
+			$("#fileToUploadval").html("(*) Select File..!!");
 			fileflag = false;
 		}
 		else {
@@ -130,85 +130,76 @@ $(document).ready(function () {
 			}
 		}
 
+		lnameflag= false;
 		$("#txtlastnameval").empty();
-		if ($(this).val() == "" || $(this).val() == null) {
-			$("#txtlastnameval").html("(*) Lastname required..!!");
-			lnameflag = false;
-		}
-		else {
-			if (!$(this).val().match($FNameLNameRegEx)) {
-				$("#txtlastnameval").html("(*) Invalid Lastname..!!");
-				lnameflag = false;
-			}
-			else {
-				lnameflag = true;
+		if($("#txtlastname").val()==""){
+			$("#txtlastnameval").html("Last name Required");
+		}else{
+			if(!$("#txtlastname").val().match($FNameLNameRegEx)){
+				$("#txtlastnameval").html("Last name Invalid");
+			}else{
+				lnameflag=true;
 			}
 		}
+
+		emailflag= false;
 		$("#txtemailval").empty();
-		if ($(this).val() == "" || $(this).val() == null) {
-			$("#txtemailval").html("(*) Email required..!!");
-			emailflag = false;
-		}
-		else {
-			if (!$(this).val().match($EmailIdRegEx)) {
-				$("#txtemailval").html("(*) Invalid Email..!!");
-				emailflag = false;
-			}
-			else {
-				emailflag = true;
+		if($("#txtemail").val()==""){
+			$("#txtemailvalval").html("Email Required");
+		}else{
+			if(!$("#txtemail").val().match($EmailIdRegEx)){
+				$("#txtemailval").html("Email Invalid");
+			}else{
+				emailflag=true;
 			}
 		}
+
+		passwordflag= false;
 		$("#txtpasswordval").empty();
-		if ($(this).val() == "" || $(this).val() == null) {
-			$("#txtpasswordval").html("(*) Password required..!!");
-			passwordflag = false;
-		}
-		else {
-			if (!$(this).val().match($PasswordRegEx)) {
-				$("#txtpasswordval").html("(*) Invalid Password..!!");
-				passwordflag = false;
-			}
-			else {
-				passwordflag = true;
+		if($("#txtpassword").val()==""){
+			$("#txtpasswordval").html("Password Required");
+		}else{
+			if(!$("#txtpassword").val().match($PasswordRegEx)){
+				$("#txtpasswordval").html("Password Invalid");
+			}else{
+				passwordflag=true;
 			}
 		}
+
+		confpasswordflag= false;
 		$("#txtconfpasswordval").empty();
-		if ($(this).val() == "" || $(this).val() == null) {
-			$("#txtconfpasswordval").html("(*) Confirm Password required..!!");
-			confpasswordflag = false;
-		}
-		else {
-			if ($(this).val() != $("#txtpassword").val()) {
-				$("#txtconfpasswordval").html("(*) Password Does Not Match..!!");
-				confpasswordflag = false;
-			}
-			else {
-				confpasswordflag = true;
+		if($("#txtconfpassword").val()==""){
+			$("#txtpasswordval").html("Password Required");
+		}else{
+			if(!$("#txtconfpassword").val().match("#txtpassword")){
+				$("#txtconfpasswordval").html("Password Does Not Match..");
+			}else{
+				confpasswordflag=true;
 			}
 		}
-		$("#address").empty();
-		if ($(this).val() == "" || $(this).val() == null) {
-			$("#addressval").html("(*) Address required..!!");
-			addressflag = false;
+
+		addressflag= false;
+		$("#addressval").empty();
+		if($("#address").val()==""){
+			$("#addressval").html("Address Required");
+		}else{
+			addressflag=true;
 		}
-		else {
-			addressflag = true;
-		}
+
+		designationflag= false;
 		$("#designationval").empty();
-		if ($(this).val() == "" || $(this).val() == null) {
-			$("#designationval").html("(*) Select Designation..!!");
-			selectflag = false;
+		if($("#designation").val()==""){
+			$("#designationval").html("Select Designation");
+		}else{
+			designationflag=true;
 		}
-		else {
-			selectflag = true;
-		}
+
+		fileflag= false;
 		$("#fileToUploadval").empty();
-		if ($(this).val() == "" || $(this).val() == null) {
-			$("#fileToUploadval").html("(*) Select Designation..!!");
-			fileflag = false;
-		}
-		else {
-			fileflag = true;
+		if($("#fileToUpload").val()==""){
+			$("#fileToUploadval").html("Select File");
+		}else{
+			fileflag=true;
 		}
 	});
 	$('#txtfirstname').keypress(function (e) {

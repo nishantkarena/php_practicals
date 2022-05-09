@@ -87,7 +87,7 @@ require 'process/registrationprocess.php';
                         <b>Address</b>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-child"></i></span>
-                            <textarea name="address" id="txtarea" cols="5" placeholder="Enter Your Address" rows="5"
+                            <textarea name="address" id="address" cols="5" placeholder="Enter Your Address" rows="5"
                                 class="form-control" required></textarea>
                         </div>
                         <small id="addressval" class="text-danger"></small>
@@ -96,7 +96,7 @@ require 'process/registrationprocess.php';
                         <b>Designation</b>
                         <div class="input-group">
                             <span class="input-group-addon"></span>
-                            <select name="designation" id="txtselect" class="form-control">
+                            <select name="designation" id="designation" class="form-control">
                                 <option value="">Select</option>
                                 <option value="pr">Project Manager</option>
                                 <option value="jr">Jr.Developer</option>

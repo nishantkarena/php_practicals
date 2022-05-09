@@ -27,37 +27,27 @@ $(document).ready(function () {
             passwordflag = false;
         }
         else {
-            if (!$(this).val().match($PasswordRegEx)) {
-                $("#passwordval").html("(*) Invalid Password..!!");
-                passwordflag = false;
-            }
-            else {
-                passwordflag = true;
-            }
+            passwordflag = true;
         }
     });
     $('#cnaclick').click(function () {
-        $("#txtemailval").empty();
-        if ($(this).val() == "" || $(this).val() == null) {
-            $("#txtemailval").html("(*) Email required..!!");
-            emailflag = false;
-        }
-        else {
-            if (!$(this).val().match($EmailIdRegEx)) {
-                $("#txtemailval").html("(*) Invalid Email..!!");
-                emailflag = false;
-            }
-            else {
-                emailflag = true;
-            }
-        }
-        $("#passwordval").empty();
-        if ($(this).val() == "" || $(this).val() == null) {
-            $("#passwordval").html("(*) Password required..!!");
-            passwordflag = false;
-        }
-        else {
-            passwordflag = true;
-        }
+        emailflag= false;
+		$("#txtemailval").empty();
+		if($("#txtemail").val()==""){
+			$("#txtemailvalval").html("Email Required");
+		}else{
+			if(!$("#txtemail").val().match($EmailIdRegEx)){
+				$("#txtemailval").html("Email Invalid");
+			}else{
+				emailflag=true;
+			}
+		}
+        passwordflag= false;
+		$("#passwordval").empty();
+		if($("#password").val()==""){
+			$("#passwordval").html("Password Required");
+		}else{
+			passwordflag=true;
+		}
     });
 });
