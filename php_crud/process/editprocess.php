@@ -8,8 +8,8 @@ if(isset($_POST['edit'])){
     $lname=$_POST['txtlastname'];
     $email=$_POST['txtemail'];
     $gender=$_POST['txtgender'];
-    $address=$_POST['txtarea'];
-    $designation=$_POST['txtselect'];
+    $address=$_POST['address'];
+    $designation=$_POST['designation'];
     $files=$_FILES["fileToUpload"]["name"];
 
     if($fname != "" && $lname != ""&& $email != "" && $gender != "" && $address != "" && $designation != ""){
