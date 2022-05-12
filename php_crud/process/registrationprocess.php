@@ -35,7 +35,7 @@ if(isset($_POST['cnaclick']) && count($_POST)>0)
 			// if everything is ok, try to upload file
 		} else {
 			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-				$sql = "INSERT INTO student  VALUES ('','$fname','$lname','$email','$address','$password','$designation','$gender','$file')";
+				$sql = "INSERT INTO student  VALUES (NULL,'$fname','$lname','$email','$address','$password','$designation','$gender','$file')";
 					if(mysqli_query($conn, $sql)){
 					header("Location:login.php");
 				} else{
