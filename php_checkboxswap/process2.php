@@ -5,11 +5,8 @@ class formdata
     public function insertdata($data,$tableB,$tableA,$col)
     {
         require("connection.php");
-        
-        
         if(!empty($data)){
-
-                $ins="INSERT INTO $tableB VALUES('','$data')";
+                $ins="INSERT INTO $tableB VALUES(NULL,'$data')";
                 print_r($ins);
                 if(mysqli_query($conn, $ins)){
                     echo "hello";

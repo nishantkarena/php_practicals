@@ -10,7 +10,7 @@
     if(isset($_POST['right'])){
         if(!empty($data)){
             foreach($data as $key=>$values){
-                $ins="INSERT INTO table2 VALUES('','$values')";
+                $ins="INSERT INTO table2 VALUES(NULL,'$values')";
                 if(mysqli_query($conn, $ins)){
                     $del = "DELETE FROM table1 WHERE formdata='$values'";
                     if (mysqli_query($conn, $del)) {
@@ -30,7 +30,7 @@
     if(isset($_POST['left'])){
         if(!empty($data1)){
             foreach($data1 as $key=>$value2){
-                $ins="INSERT INTO table1 VALUES('','$value2')";
+                $ins="INSERT INTO table1 VALUES(NULL,'$value2')";
                 if(mysqli_query($conn, $ins)){
                     $del = "DELETE FROM table2 WHERE formdata='$value2'";
                     if (mysqli_query($conn, $del)) {
