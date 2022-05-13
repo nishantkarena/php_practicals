@@ -1,7 +1,15 @@
 <?php
 session_start(); 
+
 include 'connection.php';
 require 'process/editprocess.php';
+$sql= "select * from student where id='$id'";
+$result = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result) > 0) {
+$row = mysqli_fetch_assoc($result);
+} else {
+    echo "Error";
+}
 ?>
 <html>
 
@@ -28,12 +36,6 @@ require 'process/editprocess.php';
                     id="cnform">
                     <h3 class="text-center"><i class="fa fa-user-plus"></i>Edit</h3>
                     <hr>
-                    <?php
-                            $sql= "select * from student where id='$id'";
-                            $result = mysqli_query($conn, $sql);
-                            if (mysqli_num_rows($result) > 0) {
-                            while($row = mysqli_fetch_assoc($result)) {
-                        ?>
                     <div class="form-group">
                         <b>Firstname</b>
                         <div class="input-group">
@@ -104,17 +106,11 @@ require 'process/editprocess.php';
                         <b>Select File</b>
                         <input type="file" id="fileToUpload" name="fileToUpload" class="form-control">
                         <span>Last Uploaded File : <?=$row['file']?></span>
-                        <input type="hidden" name="lastfile" value="<?=$row['file']?>">
                     </div>
-                    <?php
-                            }
-                        } else {
-                            echo "Error";
-                        }
-                        ?>
                     <div class="form-group">
                         <input type="submit" id="cnaclick" name="edit" class="btn btn-primary" class="form-control"
                             value="Edit">
+                            <a href="index.php" class="btn btn-primary" class="form-control">Back</a>
                     </div>
                 </div>
             </div>

@@ -1,10 +1,9 @@
 <?php
-include 'connection.php';
+// include 'connection.php';
 require 'process/registrationprocess.php';
 // include "phpvalidation.php";
 ?>
 <html>
-
 <head>
     <title>Registration Form</title>
     <link rel="stylesheet" type="text/css"
@@ -96,7 +95,7 @@ require 'process/registrationprocess.php';
                         <b>Designation</b>
                         <div class="input-group">
                             <span class="input-group-addon"></span>
-                            <select name="designation" id="designation" class="form-control">
+                            <select name="designation" id="designation" class="form-control" required>
                                 <option value="">Select</option>
                                 <option value="pr">Project Manager</option>
                                 <option value="jr">Jr.Developer</option>
@@ -114,6 +113,7 @@ require 'process/registrationprocess.php';
                     </div>
                     <div class="form-group">
                         <input type="submit" id="cnaclick" name="cnaclick" class="btn btn-primary" class="form-control">
+                        <a href="first.php" class="btn btn-primary" class="form-control">Back</a>
                     </div>
                 </div>
             </div>

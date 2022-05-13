@@ -46,6 +46,7 @@ require 'process/loginprocess.php';
                         <input type="submit" class="btn btn-primary" name="cnaclick" id="cnaclick"><i
                             class="fa fa-user-plus" style="color:white;"></i>
                     </div>
+                    <td><a href='registration.php' >Registration</a></td>
                 </div>
             </div>
         </div>

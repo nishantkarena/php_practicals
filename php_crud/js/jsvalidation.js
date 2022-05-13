@@ -3,9 +3,9 @@ var $PasswordRegEx = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,12}
 var $EmailIdRegEx = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,8}\b$/i;
 var $ConNoRegEx = /^([0-9]{10})$/;
 var $AgeRegEx = /^([0-9]{1,2})$/;
+var fnameflag = false, lnameflag = false, emailflag = false, passwordflag = false, confpasswordflag = false, addressflag = false, designationflag = false, fileflag= false;
 
 $(document).ready(function () {
-	var fnameflag = false, lnameflag = false, emailflag = false, passwordflag = false, confpasswordflag = false, addressflag = false, designationflag = false, fileflag= false;
 	$("#txtfirstname").blur(function () {
 		$("#txtfirstnameval").empty();
 		if ($(this).val() == "" || $(this).val() == null) {
@@ -62,7 +62,7 @@ $(document).ready(function () {
 		}
 		else {
 			if (!$(this).val().match($PasswordRegEx)) {
-				$("#txtpasswordval").html("(*) Invalid Password..!!");
+				$("#txtpasswordval").html("(*) Invalid Password, it must be 1 Uppercase,1 special Character, 8 to 12 characters!!");
 				passwordflag = false;
 			}
 			else {
@@ -201,21 +201,26 @@ $(document).ready(function () {
 		}else{
 			fileflag=true;
 		}
+
+		$('#txtfirstname').keypress(function (e) {
+			$('#txtfnameval').empty();
+			var flag = false;
+			(e.which >= 65 && e.which <= 90) || (e.which >= 92 && e.which <= 122)
+				? flag = true
+				: (flag = false, $('#txtfirstnameval').html('(*) Please Enter Valid Name..'));
+			return flag;
+		});
+		$('#txtlastname').keypress(function (e) {
+			$('#txtlastnameval').empty();
+			var flag = false;
+			(e.which >= 65 && e.which <= 90) || (e.which >= 92 && e.which <= 122)
+				? flag = true
+				: (flag = false, $('#txtlastnameval').html('(*) Please Enter Valid Name..'));
+			return flag;
+		});
+
+		
+
 	});
-	$('#txtfirstname').keypress(function (e) {
-		$('#txtfnameval').empty();
-		var flag = false;
-		(e.which >= 65 && e.which <= 90) || (e.which >= 92 && e.which <= 122)
-			? flag = true
-			: (flag = false, $('#txtfirstnameval').html('(*) Please Enter Valid Name..'));
-		return flag;
-	});
-	$('#txtlastname').keypress(function (e) {
-		$('#txtlastnameval').empty();
-		var flag = false;
-		(e.which >= 65 && e.which <= 90) || (e.which >= 92 && e.which <= 122)
-			? flag = true
-			: (flag = false, $('#txtlastnameval').html('(*) Please Enter Valid Name..'));
-		return flag;
-	});
+	
 });
