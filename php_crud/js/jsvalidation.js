@@ -5,17 +5,20 @@ var $ConNoRegEx = /^([0-9]{10})$/;
 var $AgeRegEx = /^([0-9]{1,2})$/;
 var fnameflag = false, lnameflag = false, emailflag = false, passwordflag = false, confpasswordflag = false, addressflag = false, designationflag = false, fileflag= false;
 
+
 $(document).ready(function () {
+
 	$("#txtfirstname").blur(function () {
+		var fnameflag = false;
 		$("#txtfirstnameval").empty();
 		if ($(this).val() == "" || $(this).val() == null) {
 			$("#txtfirstnameval").html("(*) Firstname required..!!");
-			fnameflag = false;
+			//fnameflag = false;
 		}
 		else {
 			if (!$(this).val().match($FNameLNameRegEx)) {
 				$("#txtfirstnameval").html("(*) Invalid firstname..!!");
-				fnameflag = false;
+				//fnameflag = false;
 			}
 			else {
 				fnameflag = true;
@@ -117,14 +120,15 @@ $(document).ready(function () {
 		}
 	});
 
-	$('#cnaclick').click(function () {
+	$("#cnaclick").click(function () {
+		
 		fnameflag= false;
-		$("#fnameval").empty();
-		if($("#fname").val()==""){
-			$("#fnameval").html("First name Required");
+		$("#txtfirstnameval").empty();
+		if($("#txtfirstname").val()==""){
+			$("#txtfirstnameval").html("First name Required");
 		}else{
-			if(!$("#fname").val().match($FNameLNameRegEx)){
-				$("#fnameval").html("First name Invalid");
+			if(!$("#txtfirstname").val().match($FNameLNameRegEx)){
+				$("#txtfirstnameval").html("First name Invalid");
 			}else{
 				fnameflag=true;
 			}
@@ -166,15 +170,15 @@ $(document).ready(function () {
 			}
 		}
 
-		confpasswordflag= false;
+		confpasswordflag = false;
 		$("#txtconfpasswordval").empty();
 		if($("#txtconfpassword").val()==""){
-			$("#txtpasswordval").html("Password Required");
+			$("#txtconfpasswordval").html("ConfirmPassword Required");
 		}else{
-			if(!$("#txtconfpassword").val().match("#txtpassword")){
-				$("#txtconfpasswordval").html("Password Does Not Match..");
+			if($("#txtpassword").val() != $("#txtconfpassword").val()){
+				$("#txtconfpasswordval").html("Password Does not Match");
 			}else{
-				confpasswordflag=true;
+				confpasswordflag = true;
 			}
 		}
 
@@ -219,8 +223,15 @@ $(document).ready(function () {
 			return flag;
 		});
 
+		if(fnameflag == true && lnameflag==true && emailflag == true && passwordflag == true && confpasswordflag == true && addressflag == true && designationflag == true && fileflag == true){
+			document.register.submit();
+			// $("#validate").html("1");
+		}else{
+			// $("#validate").html("Plaese Enter Valid Inputs");
+			//alert("Plaese Enter Valid Inputs");
+			Location.replace("registration.php");
+		}
 		
-
 	});
 	
 });

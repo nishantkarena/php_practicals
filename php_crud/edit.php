@@ -64,6 +64,15 @@ $row = mysqli_fetch_assoc($result);
                         <small id="txtemailval" class="text-danger"></small>
                     </div>
                     <div class="form-group">
+                        <b>Password</b>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                            <input id="txtpassword" name="txtpassword" type="password" placeholder="Enter password here"
+                                maxlength="12" class="form-control" value="<?=$row['password']?>" required />
+                        </div>
+                        <small id="txtpasswordval" class="text-danger"></small>
+                    </div>
+                    <div class="form-group">
                         <b>Gender</b>
                         <div class="input-group">
                             <input type="radio" class="form-control" name="txtgender" id="male" value="1"

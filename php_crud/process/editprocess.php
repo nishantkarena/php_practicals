@@ -7,6 +7,7 @@ if(isset($_POST['edit'])){
     $fname=$_POST['txtfirstname'];
     $lname=$_POST['txtlastname'];
     $email=$_POST['txtemail'];
+    $password=$_POST['txtpassword'];
     $gender=$_POST['txtgender'];
     $address=$_POST['address'];
     $designation=$_POST['designation'];
@@ -15,7 +16,7 @@ if(isset($_POST['edit'])){
 
     $sql = "select * from student where email = '$email'";
     $result = mysqli_query($conn, $sql);
-	if (mysqli_num_rows($result) >= 1) {
+	if(mysqli_num_rows($result) >1) {
 		echo "<center>". "This email is already being used"."</center>";
 	}
 	else{
@@ -48,7 +49,7 @@ if(isset($_POST['edit'])){
                         $row = mysqli_fetch_assoc($data);
                         unlink("uploads/".$row['file']);
     
-                        $edit = "UPDATE `student` SET `fname`='$fname',`lname`='$lname',`email`='$email',`address`='$address',`designation`='$designation',`gender`='$gender',`file`='$rname' WHERE `id`='$id'"; 
+                        $edit = "UPDATE `student` SET `fname`='$fname',`lname`='$lname',`email`='$email',`address`='$address', `password`='$password' , `designation`='$designation',`gender`='$gender',`file`='$rname' WHERE `id`='$id'"; 
                         $result1 = $conn->query($edit); 
                         if ($result1 == TRUE) {
                             header("Location:index.php");
@@ -61,14 +62,14 @@ if(isset($_POST['edit'])){
                 }
             }
             else{
-                $edit = "UPDATE `student` SET `fname`='$fname',`lname`='$lname',`email`='$email',`address`='$address',`designation`='$designation',`gender`='$gender' WHERE `id`='$id'"; 
+                $edit = "UPDATE `student` SET `fname`='$fname',`lname`='$lname',`email`='$email',`address`='$address', `password`='$password',`designation`='$designation',`gender`='$gender' WHERE `id`='$id'"; 
                 $result1 = $conn->query($edit); 
                 if ($result1 == TRUE) {
                     header("Location:index.php");
                 }else{
                     echo "Error:" . $edit . "<br>" . $conn->error;
                 }
-            } 
+            }
         }else{
             echo "Enter Required Fields";
         }
