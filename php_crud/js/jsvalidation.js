@@ -229,7 +229,8 @@ $(document).ready(function () {
 		}else{
 			// $("#validate").html("Plaese Enter Valid Inputs");
 			//alert("Plaese Enter Valid Inputs");
-			Location.replace("registration.php");
+			// Location.replace("registration.php");
+			
 		}
 		
 	});
