@@ -1,0 +1,8 @@
+body{
+    background-image:url('../adminimage.jpg');
+    background-size: 100%;
+}
+h2{
+    padding-top: 10px;
+    text-align : center;
+}

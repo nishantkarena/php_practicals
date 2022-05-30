@@ -42,7 +42,7 @@ if(isset($_POST['edit'])){
                 }
                 // if everything is ok, try to upload file
                 else {
-                    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                    if(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                         $select= "select * from student where id='$id'";
                         $data = mysqli_query($conn, $select);
                         $total = mysqli_num_rows($data);
