@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2022 at 07:08 AM
+-- Generation Time: Jun 10, 2022 at 02:15 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -33,18 +33,20 @@ CREATE TABLE `admin` (
   `email` varchar(255) NOT NULL,
   `gender` enum('Male','Female') NOT NULL,
   `hobbies` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `usertype` enum('1','0') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `name`, `email`, `gender`, `hobbies`, `password`) VALUES
-(3, 'sahil savaliya', 'sahil@gmail.com', 'Male', 'Cricket,Singing,Swimming', '12345'),
-(4, 'Nishant', 'karenanishant9@gmail.com', 'Male', 'Cricket,Singing,Swimming', '12345678'),
-(5, 'Hetasvi', 'hetuayer@gmail.com', 'Female', 'Shopping', 'hetu1544'),
-(10, 'Miliindaa', 'Milind@gmail.com', 'Male', 'Singing,Swimming,Shopping', 'asdfg');
+INSERT INTO `admin` (`id`, `name`, `email`, `gender`, `hobbies`, `password`, `usertype`) VALUES
+(3, 'sahil savaliya', 'sahil@gmail.com', 'Male', 'Cricket,Singing,Swimming', '12345', '0'),
+(4, 'Nishant', 'karenanishant9@gmail.com', 'Male', 'Cricket,Singing,Swimming', '12345678', '0'),
+(5, 'Hetasvi', 'hetuayer@gmail.com', 'Female', 'Swimming,Shopping', 'hetu1544', '0'),
+(13, '', 'testuser@kcsitglobal.com', '', '', 'secret', '1'),
+(14, 'vishruti', 'vishruti@gmail.com', 'Female', 'Singing', 'Pass@123', '0');
 
 -- --------------------------------------------------------
 
@@ -54,21 +56,21 @@ INSERT INTO `admin` (`id`, `name`, `email`, `gender`, `hobbies`, `password`) VAL
 
 CREATE TABLE `category` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `active` enum('Yes','No') NOT NULL
+  `cname` varchar(255) NOT NULL,
+  `active` enum('1','0') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`id`, `name`, `active`) VALUES
-(7, 'Electronics', 'Yes'),
-(9, 'Appliances', 'Yes'),
-(10, 'Sports', 'Yes'),
-(11, 'Furniture', 'Yes'),
-(12, 'Cars', 'No'),
-(13, 'test', 'Yes');
+INSERT INTO `category` (`id`, `cname`, `active`) VALUES
+(7, 'Electronics', '1'),
+(9, 'Appliances', '1'),
+(10, 'Sports', '1'),
+(11, 'Furniture', '1'),
+(12, 'Cars', '1'),
+(14, 'test', '1');
 
 -- --------------------------------------------------------
 
@@ -82,7 +84,7 @@ CREATE TABLE `product` (
   `category_id` int(11) NOT NULL,
   `images` varchar(255) NOT NULL,
   `createdbyuser` varchar(255) NOT NULL,
-  `active` enum('Yes','No') NOT NULL
+  `active` enum('1','0') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -90,16 +92,15 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `category_id`, `images`, `createdbyuser`, `active`) VALUES
-(4, 'Mobile', 7, '1013979002OIP.jpg', 'testuser@kcsitglobal.com', 'Yes'),
-(9, 'milind', 7, '668427681image1.jpg', 'testuser@kcsitglobal.com', 'No'),
-(10, 'Printer', 7, '2105327420printer.jpg', 'testuser@kcsitglobal.com', 'Yes'),
-(11, 'Watch', 7, '1404209439watch.jpg', 'testuser@kcsitglobal.com', 'Yes'),
-(12, 'Cells', 7, '1154995609Cells.jpg', 'testuser@kcsitglobal.com', 'Yes'),
-(13, 'USB', 7, '233719165Usb.jpg', 'testuser@kcsitglobal.com', 'Yes'),
-(14, 'Washing_Machine', 9, '975701425Washing.jpg', 'testuser@kcsitglobal.com', 'Yes'),
-(15, 'Fridge', 9, '400900549Fridge.jpg', 'testuser@kcsitglobal.com', 'Yes'),
-(16, 'Mixture', 9, '123011515Mixture.jpg', 'testuser@kcsitglobal.com', 'Yes'),
-(17, 'demohello', 10, '1217769802image3.png', 'testuser@kcsitglobal.com', 'Yes');
+(4, 'Mobile', 7, '1551630883OIP.jpg', '13', '1'),
+(10, 'Printer', 7, '2105327420printer.jpg', '13', '1'),
+(11, 'Watch', 7, '1404209439watch.jpg', '13', '1'),
+(12, 'Cells', 7, '1154995609Cells.jpg', '13', '1'),
+(13, 'USB', 7, '233719165Usb.jpg', '13', '1'),
+(14, 'Washing_Machine', 9, '975701425Washing.jpg', '13', '1'),
+(15, 'Fridge', 9, '400900549Fridge.jpg', '13', '1'),
+(16, 'Mixture', 9, '123011515Mixture.jpg', '13', '1'),
+(17, 'demohello', 10, '1217769802image3.png', '13', '0');
 
 -- --------------------------------------------------------
 
@@ -157,19 +158,19 @@ ALTER TABLE `super_admin`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `super_admin`

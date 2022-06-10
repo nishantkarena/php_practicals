@@ -1,16 +1,16 @@
 <?php
 session_start(); 
-if(!isset($_SESSION['email']) || isset($_SESSION['email']) != "testuser@kcsitglobal.com"){
-    header("Location:../admin.php");
+include '../../connection.php';
+if(!isset($_SESSION['email'])){
+    header("Location:../../admin.php");
 }
-include '../connection.php';
 $id= $_GET['id'];
 if(isset($_REQUEST['edit'])){
-    $name=$_POST["cname"];
+    $cname=$_POST["cname"];
 	$active=$_POST["active"];
 
-    if($name != "" && $active != ""){
-        $edit = "UPDATE `category` SET `name`='$name',`active`='$active' WHERE `id`='$id'"; 
+    if($cname != "" && $active != ""){
+        $edit = "UPDATE `category` SET `cname`='$cname',`active`='$active' WHERE `id`='$id'"; 
         $result1 = $conn->query($edit); 
         if ($result1 == TRUE) {
             header("Location:categorylist.php");

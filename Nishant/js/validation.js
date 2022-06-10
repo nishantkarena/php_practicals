@@ -5,9 +5,7 @@ var $ConNoRegEx = /^([0-9]{10})$/;
 var $AgeRegEx = /^([0-9]{1,2})$/;
 var nameflag = false, emailflag = false, passwordflag = false,editpasswordflag = false, hobbiesflag=false;
 
-
 $(document).ready(function () {
-
 	$("#name").blur(function () {
 		var nameflag = false;
 		$("#nameval").empty();

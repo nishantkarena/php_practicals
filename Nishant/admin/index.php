@@ -1,7 +1,8 @@
 <?php
 session_start();
+include '../connection.php';
 if(!$_SESSION['email']){
-    header("Location:admin.php");
+    header("Location:../admin.php");
 }
 ?> 
 <!DOCTYPE html> 
@@ -9,8 +10,8 @@ if(!$_SESSION['email']){
     <head>
         <title>Home Page</title>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
-        <script src="js/admin_delete.js"></script>
-        <link href="css/new.css" rel="stylesheet" type="text/css">
+        <script src="../js/admin_delete.js"></script>
+        <link href="../css/new.css" rel="stylesheet" type="text/css">
     </head>
     <body>
     <span id="txtmsg"></span>
@@ -19,16 +20,17 @@ if(!$_SESSION['email']){
             <div class="row" style="margin-top: 5rem;">
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-left">
-                    <h2>Logout : <a href="logout.php"><?=$_SESSION['email']?></a></h2>
+                    <h2><?=$_SESSION['email']?>: <a href="../logout.php">Logout</a></h2>
                     </div>
                     <div class="pull-right">
+                    <a class="btn btn-success" href="product/product.php">Product</a>
+                        <a class="btn btn-success" href="category/categorylist.php"> Category</a>
                         <?php 
-                        if($_SESSION['email']=="testuser@kcsitglobal.com"){?>
-                            <a class="btn btn-success" href="admin/createadmin.php"> Create New Admin</a>
-                            <a class="btn btn-primary" href="product/product.php"> Back</a>
-                  <?php }else{ ?>
-                            <a class="btn btn-primary" href="product/product.php"> Back</a>
-                  <?php } ?>
+                        if($_SESSION['usertype']=="1"){?>
+                            <a class="btn btn-success" href="createadmin.php"> Create New Admin</a>
+                            
+                  <?php }?>
+                    <a class="btn btn-primary" href="product/product.php"> Back</a>
                     </div>
                 </div>
             </div>
@@ -40,13 +42,13 @@ if(!$_SESSION['email']){
                     <th>Gender</th>
                     <th>Hobbies</th>
                     <?php 
-                    if($_SESSION['email']=="testuser@kcsitglobal.com"){?>
+                    if($_SESSION['usertype']=="1"){?>
                     <th width="280px">Action</th>
                     <?php }?>
                 </tr>
                 <?php
-                include 'connection.php';
-                $sql = "SELECT * FROM admin";
+
+                $sql = "SELECT * FROM admin WHERE usertype='0'";
                 $result = mysqli_query($conn, $sql);
                 if (mysqli_num_rows($result) > 0) {
                 while($row = mysqli_fetch_assoc($result)) {?>
@@ -57,8 +59,8 @@ if(!$_SESSION['email']){
                     <td><?= $row['gender']?></td>
                     <td><?= $row['hobbies']?></td>
                     <?php
-                    if($_SESSION['email']=="testuser@kcsitglobal.com"){?>
-                    <td><a href='admin/editadmin.php?id=<?=$row['id']?>' class="btn btn-primary">Edit</a>
+                    if($_SESSION['usertype']=="1"){?>
+                    <td><a href='editadmin.php?id=<?=$row['id']?>' class="btn btn-primary">Edit</a>
                     <button class="btn btn-danger" onclick="deleterow(<?=$row['id']?>);">Delete</button></td>
                     <?php }?>
                 </tr>

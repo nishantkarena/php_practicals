@@ -19,10 +19,10 @@ include 'createadminpro.php';
                 <span class="text-danger" id="error"></span>
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-left">
-                        <h2>Logout : <a href="../logout.php"><?=$_SESSION['email']?></a></h2>
+                    <h2><?=$_SESSION['email']?>: <a href="../logout.php">Logout</a></h2>
                     </div>
                     <div class="pull-right">
-                        <a class="btn btn-primary" href="../home.php"> Back</a>
+                        <a class="btn btn-primary" href="index.php"> Back</a>
                     </div>
                 </div>
             </div>

@@ -1,9 +1,10 @@
 <?php
 session_start();
-if(!isset($_SESSION['email']) || isset($_SESSION['email']) != "testuser@kcsitglobal.com"){
-    header("Location:../admin.php");
-}
 include '../connection.php';
+$type=$_SESSION['usertype'];
+if($type==0){
+	header("Location:../admin.php");
+}
 $id= $_GET['id'];
 if(isset($_REQUEST['edit'])){
     $name=$_POST["name"];
@@ -17,7 +18,7 @@ if(isset($_REQUEST['edit'])){
             $edit = "UPDATE `admin` SET `name`='$name',`email`='$email',`password`='$password',`gender`='$gender',`hobbies`='$hobbies' WHERE `id`='$id'"; 
             $result1 = $conn->query($edit); 
             if ($result1 == TRUE) {
-                header("Location:../home.php");
+                header("Location:index.php");
             }else{
                 echo "<center>"."Error:" . $edit . "<br>" . $conn->error."</center>";
             }
@@ -25,7 +26,7 @@ if(isset($_REQUEST['edit'])){
             $edit = "UPDATE `admin` SET `name`='$name',`email`='$email',`gender`='$gender',`hobbies`='$hobbies' WHERE `id`='$id'"; 
             $result1 = $conn->query($edit); 
             if ($result1 == TRUE) {
-                header("Location:../home.php");
+                header("Location:index.php");
             }else{
                 echo "<center>"."Error:" . $edit . "<br>" . $conn->error."</center>";
             }

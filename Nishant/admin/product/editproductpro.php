@@ -1,20 +1,20 @@
 <?php
 session_start(); 
-if(!isset($_SESSION['email']) || isset($_SESSION['email']) != "testuser@kcsitglobal.com"){
-    header("Location:../admin.php");
+include '../../connection.php';
+if(!isset($_SESSION['email'])){
+    header("Location:../../admin.php");
 }
-include '../connection.php';
 $id= $_GET['id'];
 if(isset($_REQUEST['edit'])){
     $name=$_POST["name"];
 	$category_id=$_POST["category_id"];
-	$createdbyuser=$_SESSION['email'];
+	$uid=$_SESSION['uid'];
 	$active=$_POST["active"];
     $image=$_FILES["image"]["name"];
     $rname=rand().$image;
 
-    if($name != "" && $category_id != "" && $createdbyuser != "" && $active != ""){
-        $target_dir = "../uploads/";
+    if($name != "" && $category_id != "" && $uid != "" && $active != ""){
+        $target_dir = "../../uploads/";
         $target_file = $target_dir . $rname;
         $uploadOk = 1;
         $filetype = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -39,9 +39,9 @@ if(isset($_REQUEST['edit'])){
                     $datai = mysqli_query($conn, $selecti);
                     $totali = mysqli_num_rows($datai);
                     $rowi = mysqli_fetch_assoc($datai);
-                    unlink("../uploads/".$rowi['images']);
+                    unlink("../../uploads/".$rowi['images']);
 
-                    $edit = "UPDATE `product` SET `name`='$name',`category_id`='$category_id',`images`='$rname',`active`='$active',`createdbyuser`='$createdbyuser' WHERE `id`='$id'"; 
+                    $edit = "UPDATE `product` SET `name`='$name',`category_id`='$category_id',`images`='$rname',`active`='$active',`createdbyuser`='$uid' WHERE `id`='$id'"; 
                     $result2 = $conn->query($edit); 
                     if ($result2 == TRUE) {
                         header("Location:product.php");
@@ -53,7 +53,7 @@ if(isset($_REQUEST['edit'])){
                 }
             }
         }else{
-            $edit = "UPDATE `product` SET `name`='$name',`category_id`='$category_id',`active`='$active',`createdbyuser`='$createdbyuser' WHERE `id`='$id'"; 
+            $edit = "UPDATE `product` SET `name`='$name',`category_id`='$category_id',`active`='$active',`createdbyuser`='$uid' WHERE `id`='$id'"; 
             $result2 = $conn->query($edit); 
             if ($result2 == TRUE) {
                 header("Location:product.php");

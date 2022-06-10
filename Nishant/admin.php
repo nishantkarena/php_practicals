@@ -43,6 +43,7 @@ include 'adminpro.php';
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" id="cnaclick"><i class="fa fa-user-plus"
                             style="color:white;"></i>
+                        <a class="btn btn-primary" href="index.php"> Home</a>
                     </div>
                 </div>
             </div>

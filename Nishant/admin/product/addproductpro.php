@@ -1,20 +1,21 @@
 <?php
 session_start(); 
-include '../connection.php';
-if(!isset($_SESSION['email']) || isset($_SESSION['email']) != "testuser@kcsitglobal.com"){
-    header("Location:../admin.php");
+include '../../connection.php';
+if(!isset($_SESSION['email'])){
+    header("Location:../../admin.php");
 }
+$uid=$_SESSION['uid'];
 if(isset($_POST['submit']) && count($_POST)>0)
-{
+{   
 	$name=$_POST["name"];
 	$category_id=$_POST["category_id"];
-	$createdbyuser=$_SESSION['email'];
+	$uid=$_SESSION['uid'];
 	$active=$_POST["active"];
 	$image=$_FILES["image"]["name"];
     $rname=rand().$image;
 
-    if($name != "" && $category_id != "" && $image != "" && $createdbyuser != "" && $active != ""){
-        $target_dir = "../uploads/";
+    if($name != "" && $category_id != "" && $image != "" && $uid != "" && $active != ""){
+        $target_dir = "../../uploads/";
         $target_file = $target_dir . $rname;
         $uploadOk = 1;
         $filetype = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -34,7 +35,7 @@ if(isset($_POST['submit']) && count($_POST)>0)
             // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-                $sql = "INSERT INTO product VALUES (NULL,'$name','$category_id','$rname','$createdbyuser','$active')";
+                $sql = "INSERT INTO product VALUES (NULL,'$name','$category_id','$rname','$uid','$active')";
                 if(mysqli_query($conn, $sql)){
                     header("Location:product.php");
                 } else{
