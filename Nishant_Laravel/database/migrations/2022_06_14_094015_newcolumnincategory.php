@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Newcolumns extends Migration
+class Newcolumnincategory extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,12 @@ class Newcolumns extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->string('fname');
-            $table->string('lname');
-            $table->string('email');
-            $table->enum('gender',['male','female'])->default('female');
-            $table->text('description');
-            $table->string('designation');
+        Schema::table('categories', function (Blueprint $table) {
             $table->timestamps();
+
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *
