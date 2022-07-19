@@ -27,7 +27,6 @@
                     </select>
                     <button type="submit" class="btn btn-info">Show</button>
                 </form>
-
                 @if ($message = Session::get('success'))
                 <div class="alert alert-success">
                     <p>{{ $message }}</p>
@@ -53,7 +52,7 @@
                         <td>{{ $value->cname }}</td>
                         <td>{{$value->email}}</td>
                         <td>{{$value->active=="1"?"Yes":"No"}}</td>
-
+                        
                         <td><img src=" {{ asset('images/' . $value->images)}}" width="160" height="80"></td>
                         @auth
                         <td>
@@ -74,7 +73,6 @@
                     @endif
                 </table>
             </div>
-
         </div>
     </div>
 </div>
