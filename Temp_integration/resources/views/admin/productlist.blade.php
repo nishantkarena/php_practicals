@@ -71,13 +71,6 @@ $(document).ready(function() {
                         <button type="submit" class="btn btn-info">Show</button>
                     </form>
                     @endif
-                    <div id="msg1">
-                        @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
-                            <p>{{ $message }}</p>
-                        </div>
-                        @endif
-                    </div>
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -135,7 +128,11 @@ $(document).ready(function() {
     </div>
     <!-- /.container-fluid -->
 </section>
-
+@if ($message = Session::get('success'))
+<script>
+    toastr.success("{!!Session::get('success')!!}")
+</script>
+@endif
 <script>
 $(function() {
     $('#example2').DataTable({

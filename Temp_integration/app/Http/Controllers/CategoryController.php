@@ -129,6 +129,6 @@ class CategoryController extends Controller
     public function fdelete($id){
         Category::onlyTrashed()->find($id)->forceDelete();
         return redirect()->route('category.index')
-                ->with('success','Admin deleted successfully');
+                ->with('success','Category deleted successfully');
     }
 }

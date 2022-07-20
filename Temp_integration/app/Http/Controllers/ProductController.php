@@ -163,7 +163,7 @@ class ProductController extends Controller
             $product->update();
         }
         return redirect('product')
-                        ->with('success','Product Edited successfully.');
+                        ->with('success','Product Updated successfully.');
     }
 
     /**
