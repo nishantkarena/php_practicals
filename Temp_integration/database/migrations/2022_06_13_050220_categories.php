@@ -17,6 +17,7 @@ class Categories extends Migration
             $table->id();
             $table->string('name');
             $table->enum('active',['1','0']);
+            $table->softDeletes();
         });
     }
 

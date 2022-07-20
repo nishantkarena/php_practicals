@@ -21,6 +21,7 @@ class Products extends Migration
             $table->string('createdbyuser');
             $table->enum('active',['1','0']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
