@@ -15,7 +15,7 @@ class Categories extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('cname');
             $table->enum('active',['1','0']);
             $table->softDeletes();
         });
